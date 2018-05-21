@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset=utf-8>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <meta name=format-detection content="telephone=no">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>Tea Timer</title>
+
+    <meta name=description content="Tea Timer">
+    <meta name=keywords content="tea, timer, tea timer, black tea, green tea, white tea, oolong tea">
+    <meta name=apple-mobile-web-app-title content="Tea Timer">
+    <link rel=apple-touch-icon href=favicon.png>
+
+    <meta property="og:title" content="Tea Timer">
+    <meta property="og:type" content=website>
+    <meta property="og:url" content=>
+    <meta property="og:image" content=favicon.png>
+    <meta property="og:description" content="Simple tea timer">
+
+    <meta name="twitter:title" content="Tea Timer">
+    <meta name="twitter:creator" content="@The_KL">
+    <meta name="twitter:card" content=summary>
+    <meta name="twitter:image" content=favicon.png>
+    <meta name="twitter:description" content="Simple tea timer">
+
+    <link type=image/x-icon rel="shortcut icon" href=favicon.png>
+
+<style type="text/css">
+    *,
+    *:before,
+    *:after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-kerning: auto;
+    }
+    html {
+        font-size: 1em;
+        line-height: 1.4;
+        font-weight: 400;
+        font-family: 'Open Sans', 'Source Sans Pro', Roboto, 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Myriad Pro', 'Segoe UI', Myriad, Helvetica, 'Lucida Grande', 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, Arial, sans-serif;
+        -webkit-text-size-adjust: 100%;
+        background: #333333;
+        color: #ffffff;
+    }
+    body {
+        margin: 0;
+        padding-bottom: 30px;
+        position: relative;
+        text-align: center;
+    }
+    h1 {
+        display: block;
+        margin: 20px auto 10px auto;
+    }
+    p.intro {
+        display: block;
+        width: 550px;
+        max-width: 100%;
+        margin: 0 auto 15px auto;
+        padding: 0 15px;
+    }
+    a,
+    a:visited {
+        color: #0073a4;
+    }
+    a:hover,
+    a:focus {
+        color: #ffffff;
+    }
+    h2.title {
+        display: block;
+        margin: 10px 0 0 0;
+    }
+    #timer {
+        display: block;
+    }
+    #timer span {
+        display: inline-block;
+        font-size: 60px;
+    }
+    /*---------------------*
+     *------ Buttons ------*
+     *---------------------*/
+    [data-button],
+    [data-button]:visited {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        display: inline-block;
+        width: auto;
+        margin: .5em auto;
+        padding: .4em 1.5em .36em 1.5em;
+        -webkit-appearance: none;
+        appearance: none;
+        outline: none;
+        cursor: pointer;
+        background: #0073a4;
+        font-weight: 600;
+        font-kerning: auto;
+        text-decoration: none !important;
+        text-align: center;
+        font-size: 1.25em;
+        line-height: 1;
+        color: #ffffff !important;
+        text-transform: none;
+        border: none;
+        border-top: 1px solid transparent;
+        border-left: 1px solid transparent;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+        border-radius: 0;
+        text-shadow: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+        transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+    }
+    [data-button]:hover,
+    [data-button]:focus {
+        background: #0f5d7e;
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
+        border-top: 1px solid rgba(0, 0, 0, 0.25);
+        border-left: 1px solid rgba(0, 0, 0, 0.25);
+    }
+    [data-button]:active {
+        background: #15485e;
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);
+        border-top: 1px solid rgba(0, 0, 0, 0.5);
+        border-left: 1px solid rgba(0, 0, 0, 0.5);
+    }
+    [data-button="local"] {
+        display: inline-block;
+        width: 56px;
+        height: 28px;
+        margin: 0 -5px 0 -56px;
+        padding: 0;
+        font-size: 12px;
+        line-height: 20px;
+        vertical-align: top;
+    }
+    [data-button="more-info"] {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    #more-info {
+        display: block;
+        width: 650px;
+        max-height: 0px;
+        max-width: 100%;
+        margin: 0 auto 30px auto;
+        padding: 0 15px;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+    }
+    #more-info.active {
+        opacity: 1;
+        max-height: 500px;
+    }
+</style>
+    <!-- START AdSense -->
+    <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-1755005399297937",
+            enable_page_level_ads: true
+        });
+    </script> -->
+    <!-- END AdSense -->
+</head>
+<body>
+
+<h1>Tea Timer</h1>
+<p class="intro">Quick and easy tea timer for all types of tea.</p>
+<button data-button="more-info" onclick="moreInfo()">More info &#9662;</button>
+<div id="more-info">
+    <h2 class="title">Time it like a pro!</h2>
+    <p>Check out this simple tea timer</p>
+    <p>If you like it, you can star it or fork it <a href="https://github.com/avantegarde/teatimer" target="_blank">over at
+        GitHub</a></p>
+</div>
+<div id="temp">
+    <span>00<sup>C</sup> | 00<sup>F</sup></span>
+</div>
+<div id="timer">
+    <span id="teaMin">00</span>
+    <span>:</span>
+    <span id="teaSec">00</span>
+</div>
+<div id="ani-label"></div>
+<div class="buttons">
+    <button data-button="more-info" onclick="teaType('black')">Black</button>
+    <button data-button="more-info" onclick="teaType('green')">Green</button>
+    <button data-button="more-info" onclick="teaType('oolong')">Oolong</button>
+    <button data-button="more-info" onclick="teaType('white')">White</button>
+    <button data-button="more-info" onclick="teaType('roobois')">Roobois</button>
+    <button data-button="more-info" onclick="teaType('herbal')">Herbal</button>
+</div>
+
+<script>
+    var teaSec, teaMin, counter;
+    var output = document.getElementById('output');
+
+    function teaType(kind) {
+        stop();
+        teaSec = 0;
+        if (kind === 'herbal') {
+            teaMin = 5;
+        } else if (kind === 'black' || kind === 'oolong' || kind === 'roobois') {
+            teaMin = 3;
+            start();
+        } else if (kind === 'green' || kind === 'white') {
+            teaMin = 2;
+            start();
+        } else {
+            alert('Whoops!');
+        }
+    }
+
+    function start() {
+        counter = setInterval(function () {
+            timer();
+        }, 1000);
+    }
+
+    function timer() {
+        var minTime = document.getElementById("teaMin");
+        minTime.innerHTML = "0" + teaMin;
+        teaSec = teaSec - 1;
+
+        if (teaSec >= 10) {
+            document.getElementById("teaSec").innerHTML = teaSec;
+        }
+        if (teaSec < 10) //last 10 digits, view as 00
+        {
+            document.getElementById("teaSec").innerHTML = "0" + teaSec;
+
+            if (teaSec < 0) //when timmer reaches 00
+            {
+                teaMin = teaMin - 1;
+                if (teaMin >= 0) {
+                    document.getElementById("teaMin").innerHTML = "0" + teaMin;
+                    teaSec = 59;
+                    document.getElementById("teaSec").innerHTML = teaSec;
+                }
+                else if (teaSec <= 0) {
+                    stop();
+                    document.getElementById("teaMin").innerHTML = "--";
+                    document.getElementById("teaSec").innerHTML = "--";
+                    document.getElementById("ani-label").innerHTML = "DONE";
+                    return;
+                }
+            }
+        }
+    }
+
+    function restart() {
+        stop();
+        document.getElementById("teaSec").innerHTML = "--";
+        document.getElementById("teaMin").innerHTML = "--";
+        document.getElementById("ani-label").innerHTML = "Brewing";
+    }
+
+    function stop() {
+        clearInterval(counter);
+    }
+
+    function moreInfo() {
+        var more_info = document.getElementById('more-info');
+        if (more_info.classList.contains('active')) {
+            more_info.classList.remove('active');
+        } else {
+            more_info.classList.add('active');
+        }
+    }
+</script>
+</body>
+</html>
